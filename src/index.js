@@ -5,12 +5,12 @@ import {createStore, applyMiddleware} from 'redux';
 import thunk from 'redux-thunk';
 import allReducers from './reducers';
 import App from './components/app';
-import {loadMovies} from './actions/movie-action';
+import {loadUsers} from './actions/user-action';
 
 const store = createStore(allReducers, applyMiddleware(thunk));
 
-//let's tell the store to dispatch our loadMovies action
-store.dispatch(loadMovies('comedy'));
+//let's tell the store to dispatch our loadUsers action
+store.dispatch(loadUsers(232));
 
 const renderMethod = module.hot ? ReactDOM.render : ReactDOM.hydrate;
 

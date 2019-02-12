@@ -2,18 +2,17 @@ import React, { Component } from 'react';
 
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
-import Loading from '../containers/loading';
-import { selectMovie, deleteMovie, loadMovies } from '../actions/movie-action';
+import Loading from './loading';
+import { selectUser, loadUsers } from '../actions/user-action';
 
-class MoviesList extends Component {
+class UsersList extends Component {
   constructor(props) {
     super(props);
     this.state = {
       isLoading: false,
     }
     
-    this.selectMovie = this.selectMovie.bind(this);
-    this.deleteMovie = this.deleteMovie.bind(this);
+    this.selectUser = this.selectUser.bind(this);
     this.reloadAction = this.reloadAction.bind(this);
   }
   componentWillReceiveProps(nextProps) {
@@ -32,27 +31,21 @@ class MoviesList extends Component {
   reloadAction() {
     this.props.loadMovies();
   }
-  selectMovie(movie) {
-    this.props.selectMovie(movie);
+  selectUser(movie) {
+    this.props.selectUser(movie);
   }
-  deleteMovie(movie) {
-    this.props.deleteMovie(movie);
-  }
-  createMovieList() {
-    if (this.props.movies.length) {
-      return this.props.movies.map((movie, idx) => {
+  
+  createList() {
+    if (this.props.users.length) {
+      return this.props.users.map((item, idx) => {
         return (
           <li key={idx}>
             <a href="#" onClick={(e) => {
               e.preventDefault();
-              this.selectMovie(movie);
+              this.selectUser(item);
             }}>
-              <img src={movie.Poster} alt="movie-thumb" height="100px" className="float-left" />{`${movie.Title} ${movie.Year}`}
+              <img src={item.avatar_url} alt="user-thumb" height="100px" className="float-left" />{`${item.login.toUpperCase()}`}
             </a>
-            <a href="#" onClick={(e) => {
-              e.preventDefault();
-              this.deleteMovie(movie);
-            }} className="float-right text-danger">X</a>
 
           </li>
         )
@@ -67,48 +60,41 @@ class MoviesList extends Component {
     }
   }
   render() {
-    let MovieContainerData;
+    let ListContainerData;
     if (!this.props.loadingStatus) {
-      MovieContainerData = (
+      ListContainerData = (
         <div>
-          <h2>List of Movies</h2>
+          <h2>Github Users List</h2>
           <ul>
-            {this.createMovieList()}
+            {this.createList()}
           </ul>
         </div>
       );
     } else {
-      MovieContainerData = (<Loading message="Please wait.. we are fetching data" />);
-      // MovieContainerData = (<h3>Loading...</h3>);
+      ListContainerData = (<Loading message="Please wait.. we are fetching data" />);
     }
 
     return (
-      <div className="movie-list-container">
-        {MovieContainerData}
+      <div className="list-container">
+        {ListContainerData}
       </div>
       );
   }
 }
 
-// MoviesList.propTypes = {
-//   movies: PropTypes.array.isRequired,
-//   loadingStatus: PropTypes.bool
-// }
-
 function mapStateToProps(state) {
   // console.log('state ', state);
   return {
-    movies: state.movies,
+    users: state.users,
     loadingStatus: state.loadingStatus,
   }
 }
 
 function matchDispatchToProps(dispatch) {
   return bindActionCreators({
-    selectMovie,
-    deleteMovie,
-    loadMovies,
+    selectUser,
+    loadUsers,
   }, dispatch);
 }
 
-export default connect(mapStateToProps, matchDispatchToProps)(MoviesList);
+export default connect(mapStateToProps, matchDispatchToProps)(UsersList);

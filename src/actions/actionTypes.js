@@ -1,5 +1,4 @@
 export const LOADING = 'LOADING';
-export const LOAD_MOVIES = 'LOAD_MOVIES';
-export const LOAD_MOVIES_SUCCESS = 'LOAD_MOVIES_SUCCESS';
-export const DELETE_MOVIE = 'DELETE_MOVIE';
+export const LOAD_USERS = 'LOAD_USERS';
+export const LOAD_USERS_SUCCESS = 'LOAD_USERS_SUCCESS';
 export const OPEN_MODAL = 'OPEN_MODAL'; 

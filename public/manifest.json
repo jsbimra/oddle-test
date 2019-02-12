@@ -1,6 +1,6 @@
 {
-  "short_name": "app wrr",
-  "name": "app-wrr",
+  "short_name": "oddle test",
+  "name": "oddle-test-app",
   "icons": [
     {
       "src": "favicon.ico",

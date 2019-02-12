@@ -2,7 +2,7 @@
   "name": "app-wrr",
   "version": "1.0.0",
   "private": true,
-  "homepage": "https://jsbimra.github.io/app-wrr",
+  "homepage": "https://jsbimra.github.io/oddle-test",
   "scripts": {
     "start": "react-scripts start",
     "build": "react-scripts build",

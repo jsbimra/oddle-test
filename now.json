@@ -1,5 +1,6 @@
 {
   "version": 2,
+  "public": true,
   "name": "oddle-app-test",
   "builds": [
     { "src": "package.json", "use": "@now/static-build", "config": { "distDir": "build" } }

@@ -1,0 +1,58 @@
+
+$dcw: calc(50vw - 90px);
+$dch: 50vh;
+$dctop: calc(50vh / 2);
+
+.modal-wrapper {
+    float:right;
+    
+    width: $dcw;
+    height: $dch;
+    position: absolute;
+    top: $dctop;
+    right: 5%;
+    transition: all 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    transform: scale(0);
+    opacity: 0;
+
+    &.expand  {
+        transform: scale(1);
+        opacity: 1;
+    }
+
+}
+
+.modal-container{
+    border:0 solid orangered;
+    box-shadow: 2px 2px 20px #b4b4b4;
+    background: #ffffff;
+    padding: 10px;
+   
+    & .modal-header{
+        overflow: hidden;
+
+        h3{
+            margin-top: 5px;
+        }
+        & .modal-close {
+            display: inline-block;
+            margin: 2px;
+            font-size: 11px;
+            float:right;
+            color: #000;
+        }
+    }
+    & .modal-body{
+        min-height: calc(100vh / 3);
+    }
+    & .modal-footer{
+        text-align: center;
+        overflow: hidden;
+
+        & button {
+            margin-left: 5px;
+            margin-right: 5px;
+        }
+    }
+    
+}

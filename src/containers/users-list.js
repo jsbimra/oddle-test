@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
+
 import Loading from './loading';
 import { selectUser, loadUsers } from '../actions/user-action';
 

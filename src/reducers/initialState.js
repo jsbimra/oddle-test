@@ -1,5 +1,6 @@
 export default {
     loadingStatus: false,
     users: [],
-    activeUser: {}
+    activeUser: {},
+    searchKeyword: ''
 }

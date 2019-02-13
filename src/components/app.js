@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
-// import UserList from '../containers/user-list';
-// import UserDetail from '../containers/user-detail';
 import UserList from '../containers/users-list';
+// import UserDetail from '../containers/user-detail';
 import Search from '../containers/search';
 import '../scss/style.scss';
 

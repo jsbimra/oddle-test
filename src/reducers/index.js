@@ -1,14 +1,15 @@
 import { combineReducers } from 'redux';
-import {pageLoadingReducer, searchLoaderReducer} from './loading-reducer';
+import { PageLoadingReducer, SearchLoaderReducer } from './loading-reducer';
+import { ActiveUserReducer, SelectedUsernameReducer } from './user-detail-reducer';
 import UsersReducers from './users-reducer';
-import ActiveUserReducer from './user-detail-reducer';
 import SearchReducer from './search-reducer';
 
 const allReducers = combineReducers({
     activeUser: ActiveUserReducer,
+    selectedDetailUsername: SelectedUsernameReducer,
     users: UsersReducers,
-    loadingStatus: pageLoadingReducer,
-    searchLoaderStatus: searchLoaderReducer,
+    loadingStatus: PageLoadingReducer,
+    searchLoaderStatus: SearchLoaderReducer,
     searchKeyword: SearchReducer
 });
 

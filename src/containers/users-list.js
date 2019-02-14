@@ -1,10 +1,11 @@
 import React, { Component } from 'react';
-import { BrowserRouter as Router, Route, Link } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 import { withRouter } from 'react-router'; //for redux
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 
 import { selectUser, loadUsers } from '../actions/user-action';
+import Search from '../containers/search';
 // import UserDetail from '../containers/user-detail';
 
 class UsersList extends Component {
@@ -33,8 +34,10 @@ class UsersList extends Component {
   reloadAction() {
 
   }
-  selectUser(user) {
+  selectUser(user, navigateToPath) {
     this.props.selectUser(user);
+
+    this.props.history.push(navigateToPath);
   }
 
   createList() {
@@ -42,7 +45,10 @@ class UsersList extends Component {
       return this.props.users.map((item, idx) => {
         return (
           <li key={idx}>
-            <Link to={`/${item.login}`}>
+            <Link to={`/${item.login}`} onClick={(e) => {
+              e.preventDefault();
+              this.selectUser(item, `/${item.login}`);
+            }}>
               <img src={item.avatar_url} alt="user-thumb" height="100px" />
               <p>{`${item.login.toUpperCase()}`}</p>
             </Link>
@@ -64,23 +70,24 @@ class UsersList extends Component {
     let ListContainerData;
     if (this.props.users.length) {
       ListContainerData = (
-        // <Router>
-          <div>
-            <h2>Users List</h2>
-            <ul>
-              {this.createList()}
-            </ul>
-
-          </div>
-        // </Router>
+        <div>
+          <h2>Users List</h2>
+          <ul>
+            {this.createList()}
+          </ul>
+        </div>
       );
     } else {
       // ListContainerData = (<Loading message="Type to search users" />);
     }
 
     return (
-      <div className="list-container">
-        {ListContainerData}
+
+      <div className="clearfix">
+        <Search />
+        <div className="list-container">
+          {ListContainerData}
+        </div>
       </div>
     );
   }

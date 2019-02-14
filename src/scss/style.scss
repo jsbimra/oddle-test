@@ -1005,6 +1005,23 @@ caption {
     border-radius: 50%;
 }
 
+.badge {
+    display: inline-block;
+    vertical-align: middle;
+
+    background: #be9c04;
+    color: #fff;
+    font-weight: normal;
+    text-align: center;
+    padding: 2px 10px;
+
+    border-radius: 5px;
+
+    &.badge-small{
+        font-size: xx-small;
+    }
+}
+
 @import 'search';
 @import 'list';
 @import 'list_detail';

@@ -7,6 +7,8 @@ import { connect } from 'react-redux';
 import { fetchUserDetail } from '../actions/user-detail-action';
 import { bindActionCreators } from 'redux';
 
+import Block from '../containers/user-detail-block';
+
 class UserDetail extends Component {
 
   componentWillMount(prevProps) {
@@ -31,34 +33,32 @@ class UserDetail extends Component {
   //   // return userdetail;
   // }
 
+  formatURL(url) {
+    if (url) {
+      if (url.includes('{')) {
+        return url.split('{')[0];
+      } else {
+        return url;
+      }
+    }
+  }
   render() {
 
     const { activeUser: user } = this.props;
-
     let detailTemplate = '';
 
     if (Object.keys(user).length) {
       detailTemplate = (
         <div className="list-detail-container">
           <h2>USER - {user.login.toUpperCase()}</h2>
+          <p className="text-left clearfix back-link"><Link to="/" className="float-right1">&#8592; back to list</Link></p>
 
           <div className="block-container">
             <div className="block avatar"><img src={user.avatar_url} alt="user-thumb" height="150px" className="round-img float-left" /></div>
-            <div className="block followers">
-              <h3>Followers</h3>
-              {user.followers_url}
-            </div>
-            <div className="block following">
-              <h3>Following</h3>
-
-              {user.following_url}
-            </div>
-            <div className="block repos">
-              <h3>Repos</h3>
-              {user.repos_url}</div>
-            {/* <p>{user.}</p> */}
+            <Block cssClasses="block followers" apiURL={this.formatURL(user.followers_url)} title="Followers" />
+            <Block cssClasses="block following" apiURL={this.formatURL(user.following_url)} title="Following" />
+            <Block cssClasses="block repos" apiURL={this.formatURL(user.repos_url)} title="Repos" />
           </div>
-          <p className="text-center clearfix"><Link to="/" className="float-right1">&8592; back to list</Link></p>
         </div>
       )
     }

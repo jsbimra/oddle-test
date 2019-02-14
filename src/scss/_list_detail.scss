@@ -1,11 +1,15 @@
 
 .list-detail-container {
+    .back-link {
+        margin-left: 20px;
+    }
+
     h2 {
         color: rgb(0, 47, 255);
         text-align: center;
     }   
 
-    & img {margin-right: 20px;}
+    img {margin-right: 20px;}
 
     & .block-container {
         float:left;
@@ -24,6 +28,27 @@
             content: ' ';
             display: block;
             overflow: hidden;
+        }
+
+
+        & .badge {
+            // float: right;
+            text-align:right;
+        }
+
+        & .block-list {
+            list-style-type: square;
+            margin-left:0;
+            padding-left: 0;
+            list-style-position: inside;
+
+            & li {
+                text-transform: capitalize;
+
+                & > a {
+                    color: rgb(248, 104, 20);
+                }
+            }
         }
     }
 }

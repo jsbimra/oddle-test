@@ -32,3 +32,10 @@ export function fetchUserDetail(username) {
         });
     }
 }
+
+export function fetchBlockData(url) {
+    
+    return fetch(url).then(resp => resp.json())
+    .then(data => data)
+    .catch(err => console.error(new Error(err)));
+}

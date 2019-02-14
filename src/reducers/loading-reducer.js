@@ -15,7 +15,7 @@ export const pageLoadingReducer = (state = initialState.loadingStatus, action) =
 export const searchLoaderReducer = (state = initialState.searchLoaderStatus, action) => {
     switch (action.type) {
         case types.SEARCH_LOADER: {
-            console.log('REDUCER: SEARCH LOADER ', action);
+            // console.log('REDUCER: SEARCH LOADER ', action);
             return action.status
         }
         default: 

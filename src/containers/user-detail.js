@@ -1,43 +1,29 @@
 import React, { Component } from 'react';
+import { withRouter } from 'react-router'; //for redux
 import { connect } from 'react-redux';
 
 class UserDetail extends Component {
   constructor(props) {
     super(props);
 
-    this.modalClose = this.modalClose.bind(this);
   }
-  modalClose(e) {
-    e.preventDefault();
-    console.log('close fired');
-    const detailContainer = document.querySelector('.modal-wrapper');
-    detailContainer.classList.remove('expand');
+
+  componentWillMount() {
+    console.log('USER DETAIL Comp WILL MOUNT TRIGGER ');
   }
-  render() {
-    const user = this.props.activeUser ? this.props.activeUser : undefined;
-    console.log(user);
+  render(match) {
+    console.log(match);
+    const { activeUser: user } = this.props;
+    console.log(this.props);
+
+    if (!user) return (<h1>No props data found</h1>);
+
     let detailTemplate = '';
-    if (!user) return '';
-    if(user) {
-      detailTemplate =  (
-        <div className="modal-container">
-          <div className="modal-header hide">
-            <h3>User detail</h3>
-          </div>
-  
-          <div className="modal-body">
-            <h4>{user.login.toUpperCase()}</h4>
-            <p className="text-center">
-              <img src={user.avatar_url} alt="thumb" height="190px" />
-            </p>
-          </div>
-  
-          <div className="modal-footer">
-            <div className="float-right">
-              <button name="okModalBtn" className="modal-btn" onClick={this.modalClose}>Close</button>
-            </div>
-          </div>
-  
+
+    if (user) {
+      detailTemplate = (
+        <div className="list-detail-container">
+          <h1>Following user detail: </h1>
         </div>
       )
     }
@@ -52,4 +38,4 @@ function mapStateToProps(state) {
   }
 }
 
-export default connect(mapStateToProps)(UserDetail);
+export default withRouter(connect(mapStateToProps)(UserDetail));

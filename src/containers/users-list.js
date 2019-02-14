@@ -1,12 +1,11 @@
 import React, { Component } from 'react';
 import { BrowserRouter as Router, Route, Link } from 'react-router-dom';
-
+import { withRouter } from 'react-router'; //for redux
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 
-import Loading from './loading';
-import UserDetail from '../containers/user-detail';
 import { selectUser, loadUsers } from '../actions/user-action';
+// import UserDetail from '../containers/user-detail';
 
 class UsersList extends Component {
   constructor(props) {
@@ -43,13 +42,17 @@ class UsersList extends Component {
       return this.props.users.map((item, idx) => {
         return (
           <li key={idx}>
-            <Link to="/:item" onClick={(e) => {
+            <Link to={`/${item.login}`}>
+              <img src={item.avatar_url} alt="user-thumb" height="100px" />
+              <p>{`${item.login.toUpperCase()}`}</p>
+            </Link>
+            {/* <Link to={`/${item.login}`} onClick={(e) => {
               e.preventDefault();
               this.selectUser(item);
             }}>
-              <p>{`${item.login.toUpperCase()}`}</p>
               <img src={item.avatar_url} alt="user-thumb" height="100px" />
-            </Link>
+              <p>{`${item.login.toUpperCase()}`}</p>
+            </Link> */}
           </li>
         )
       })
@@ -61,13 +64,15 @@ class UsersList extends Component {
     let ListContainerData;
     if (this.props.users.length) {
       ListContainerData = (
-        <div>
-          <h2>Users List</h2>
-          <ul>
-            {this.createList()}
-          </ul>
-          <Route path="/:user" component={UserDetail} />
-        </div>
+        // <Router>
+          <div>
+            <h2>Users List</h2>
+            <ul>
+              {this.createList()}
+            </ul>
+
+          </div>
+        // </Router>
       );
     } else {
       // ListContainerData = (<Loading message="Type to search users" />);
@@ -96,4 +101,4 @@ function matchDispatchToProps(dispatch) {
   }, dispatch);
 }
 
-export default connect(mapStateToProps, matchDispatchToProps)(UsersList);
+export default withRouter(connect(mapStateToProps, matchDispatchToProps)(UsersList));

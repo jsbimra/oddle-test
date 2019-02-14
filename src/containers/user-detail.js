@@ -8,14 +8,18 @@ import { fetchUserDetail } from '../actions/user-detail-action';
 import { bindActionCreators } from 'redux';
 
 class UserDetail extends Component {
-  
+
   componentWillMount(prevProps) {
     const { match, activeUser } = this.props;
     const username = match.params.user ? match.params.user : null;
 
-    if(!Object.keys(activeUser).length) {
-        this.props.history.push('/');
+    if (!Object.keys(activeUser).length) {
+      this.props.history.push('/');
     }
+
+  }
+
+  componentWillUnmount() {
 
   }
 
@@ -29,19 +33,32 @@ class UserDetail extends Component {
 
   render() {
 
-    const {activeUser: user} = this.props;
+    const { activeUser: user } = this.props;
 
     let detailTemplate = '';
 
-    if (user) {
+    if (Object.keys(user).length) {
       detailTemplate = (
         <div className="list-detail-container">
-          <h1>Following user detail: {user.login}</h1>
+          <h2>USER - {user.login.toUpperCase()}</h2>
 
-            <h3></h3>
-              {/* <img src={item.avatar_url} alt="user-thumb" height="100px" /> */}
-              {/* <p></p> */}
-          <p className="text-center "> <Link to="/">take me back</Link></p>
+          <div className="block-container">
+            <div className="block avatar"><img src={user.avatar_url} alt="user-thumb" height="150px" className="round-img float-left" /></div>
+            <div className="block followers">
+              <h3>Followers</h3>
+              {user.followers_url}
+            </div>
+            <div className="block following">
+              <h3>Following</h3>
+
+              {user.following_url}
+            </div>
+            <div className="block repos">
+              <h3>Repos</h3>
+              {user.repos_url}</div>
+            {/* <p>{user.}</p> */}
+          </div>
+          <p className="text-center clearfix"><Link to="/" className="float-right1">&8592; back to list</Link></p>
         </div>
       )
     }

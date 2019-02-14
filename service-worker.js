@@ -14,7 +14,7 @@
 importScripts("https://storage.googleapis.com/workbox-cdn/releases/3.6.3/workbox-sw.js");
 
 importScripts(
-  "/oddle-test/precache-manifest.7510660d0c83cd6fd1d51d585f42ccdd.js"
+  "/oddle-test/precache-manifest.3b45898240cdfe654ae5a08bff4d88e9.js"
 );
 
 workbox.clientsClaim();

@@ -1,13 +1,13 @@
 {
-  "main.css": "/oddle-test/static/css/main.40b62c84.chunk.css",
-  "main.js": "/oddle-test/static/js/main.22605a3b.chunk.js",
-  "main.js.map": "/oddle-test/static/js/main.22605a3b.chunk.js.map",
+  "main.css": "/oddle-test/static/css/main.f4bc4bfe.chunk.css",
+  "main.js": "/oddle-test/static/js/main.b60afa9a.chunk.js",
+  "main.js.map": "/oddle-test/static/js/main.b60afa9a.chunk.js.map",
   "runtime~main.js": "/oddle-test/static/js/runtime~main.7ca242ec.js",
   "runtime~main.js.map": "/oddle-test/static/js/runtime~main.7ca242ec.js.map",
-  "static/js/2.33131649.chunk.js": "/oddle-test/static/js/2.33131649.chunk.js",
-  "static/js/2.33131649.chunk.js.map": "/oddle-test/static/js/2.33131649.chunk.js.map",
+  "static/js/2.c8864002.chunk.js": "/oddle-test/static/js/2.c8864002.chunk.js",
+  "static/js/2.c8864002.chunk.js.map": "/oddle-test/static/js/2.c8864002.chunk.js.map",
   "index.html": "/oddle-test/index.html",
-  "precache-manifest.7510660d0c83cd6fd1d51d585f42ccdd.js": "/oddle-test/precache-manifest.7510660d0c83cd6fd1d51d585f42ccdd.js",
+  "precache-manifest.3b45898240cdfe654ae5a08bff4d88e9.js": "/oddle-test/precache-manifest.3b45898240cdfe654ae5a08bff4d88e9.js",
   "service-worker.js": "/oddle-test/service-worker.js",
-  "static/css/main.40b62c84.chunk.css.map": "/oddle-test/static/css/main.40b62c84.chunk.css.map"
+  "static/css/main.f4bc4bfe.chunk.css.map": "/oddle-test/static/css/main.f4bc4bfe.chunk.css.map"
 }

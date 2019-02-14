@@ -1,32 +1,34 @@
 
 .list-container{
-    float: left;
-    width: 49%;
-    width: 49vwpx;
     overflow: hidden;
+    width: 100%;
 }
 
 .list-container ul{
-    width:100%;
     list-style-type: none;
     margin: 0;
     padding: 0;
-
     & > li {
-        width: 100%;
-        margin-bottom: 10px;
+        width: 15%;
+        margin-bottom: 45px;
+        margin-right: 5px;
+        margin-left: 5px;
+        text-align: center;
+        display:inline-block;
+
+        & p {
+            padding-bottom: 3px;
+            margin-bottom: 3px;
+        }
 
         & img {
-            margin-right: 10px;
+            clear: both;
         }
         & > a  {
             word-break: break-all;
             color: #D33C40;
-            display: inline-block;
-        }  
-        & > a:first-child {
-            margin-right: 10px;
-            width: 95%;
+            display: block;
+            text-align: center;
         }
     }
 }

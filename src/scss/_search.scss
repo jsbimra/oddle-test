@@ -1,7 +1,124 @@
 .search-panel{
     clear:both;
     width: 100%;
-    & .search-input {
 
+    position: relative;
+
+    & .search-input {
+        float:left;
+        width: 91%;
+    }
+
+    input[type='button'] {
+        margin-top: 6px;
+    }
+
+    & > .loaderWrapper {
+        position: absolute;
+        left: 0;
+        top: 0;
+        width: 100%;
+        background: #fff;
+        opacity: 0.8;
+        text-align: center;
+        height: 44px;
+        padding-top: 14px;
+        padding-left: 45%;
+    }
+}
+
+$loaderCenterBg :  rgb(255, 71, 200);
+$loaderSidesBg :  rgb(20, 160, 241);
+
+.dot-loader {
+    position: relative;
+    text-align:center;
+    width: 15px;
+    transition: all ease-in;
+
+    & > .loaderButton{
+        display: block;
+        width: 10px;
+        height: 10px;
+        margin: 0 3px;
+        background-color: $loaderCenterBg;
+        border-radius: 50%;
+        transform: scale(1.2);
+        animation: animateLoaderCenter 1s infinite alternate-reverse;
+    }
+    
+    &:before, &:after {
+        content: ' ';
+        position: absolute;
+        width: 12px;
+        height: 12px;
+        border-radius: 50%;
+        background-color: $loaderSidesBg;
+        transform: scale(0.4);
+
+        animation: animateLoaderSides 1s infinite alternate-reverse;
+    }
+
+    &:before {
+        left:  -11px;
+        top:0;
+    }
+
+    &:after {
+        right: -11px;
+        top:0;
+    }
+}
+
+@keyframes animateLoaderCenter {
+    // 0% {
+    //     transform: scale(.4);
+    // }
+    50% {
+        transform: scale(.9);
+        background-color: $loaderSidesBg;
+    }
+    100% {
+        transform: scale(.6);
+    }
+}
+
+@-webkit-keyframes animateLoaderCenter {
+    // 0% {
+    //     transform: scale(.4);
+    // }
+    50% {
+        transform: scale(.9);
+        background-color: $loaderSidesBg;
+    }
+    100% {
+        transform: scale(.6);
+    }
+}
+
+
+@keyframes animateLoaderSides {
+    // 0% {
+    //     transform: scale(1.1);
+    // }
+    50% {
+        transform: scale(.6);
+        background-color: $loaderCenterBg;
+    }
+    100% {
+        transform: scale(.9);
+    }
+}
+
+@-webkit-keyframes animateLoaderSides {
+    // 0% {
+    //     transform: scale(1.1);
+    // }
+    50% {
+        transform: scale(.6);
+        background-color: $loaderCenterBg;
+    }
+    100% {
+        transform: scale(.9);
     }
 }

@@ -8,9 +8,10 @@ class App extends Component {
     render() {
         return (
             <div className="main-wrapper">
+                <h1>Assignment + React Redux + SSR + NOW + FUN!!</h1>
                 <Search />
 
-                <div className="movies-container">
+                <div className="list-container">
                     <UserList />
                 </div>
 {/* 

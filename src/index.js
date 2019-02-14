@@ -10,7 +10,7 @@ import {loadUsers} from './actions/user-action';
 const store = createStore(allReducers, applyMiddleware(thunk));
 
 //let's tell the store to dispatch our loadMovies action
-store.dispatch(loadUsers(444));
+// store.dispatch(loadUsers(444));
 
 const renderMethod = module.hot ? ReactDOM.render : ReactDOM.hydrate;
 

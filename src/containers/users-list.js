@@ -12,7 +12,7 @@ class UsersList extends Component {
     this.state = {
       isLoading: false,
     }
-    
+
     this.selectUser = this.selectUser.bind(this);
     this.reloadAction = this.reloadAction.bind(this);
   }
@@ -30,12 +30,12 @@ class UsersList extends Component {
     // console.log('PROPS: loading', this.props.loadingStatus)
   }
   reloadAction() {
-    this.props.loadMovies();
+
   }
-  selectUser(movie) {
-    this.props.selectUser(movie);
+  selectUser(user) {
+    this.props.selectUser(user);
   }
-  
+
   createList() {
     if (this.props.users.length) {
       return this.props.users.map((item, idx) => {
@@ -45,41 +45,36 @@ class UsersList extends Component {
               e.preventDefault();
               this.selectUser(item);
             }}>
-              <img src={item.avatar_url} alt="user-thumb" height="100px" className="float-left" />{`${item.login.toUpperCase()}`}
+              <p>{`${item.login.toUpperCase()}`}</p>
+              <img src={item.avatar_url} alt="user-thumb" height="100px" />
             </a>
-
           </li>
         )
       })
     } else {
-      return (
-        <p className="text-center">
-          <strong>No more records!!</strong> <br /><br />
-          <a href="#" onClick={this.reloadAction}>Reload?</a>
-        </p>
-      )
+      return ''
     }
   }
   render() {
     let ListContainerData;
-    if (!this.props.loadingStatus) {
+    if (this.props.users.length) {
       ListContainerData = (
         <div>
-          <h2>Github Users List</h2>
+          <h2>Users List</h2>
           <ul>
             {this.createList()}
           </ul>
         </div>
       );
     } else {
-      ListContainerData = (<Loading message="Please wait.. we are fetching data" />);
+     // ListContainerData = (<Loading message="Type to search users" />);
     }
 
     return (
       <div className="list-container">
         {ListContainerData}
       </div>
-      );
+    );
   }
 }
 

@@ -1,7 +1,7 @@
 import * as types from './actionTypes';
 import API from '../api/api';
 import { loading } from './loading-action';
-// import { openModal } from './user-details';
+import { searchLoader } from './loading-action';
 
 export function loadUsersSuccess(users) {
     return {
@@ -10,18 +10,21 @@ export function loadUsersSuccess(users) {
     }
 }
 
-export function loadUsers(since) {
+export function loadUsers(users) {
     return function (dispatch) {
-        dispatch(loading(true));
-        // console.log('ACTION: LOAD BEFORE SUCCESS ');
-        return API.getUsers(since).then(users => {
-            // console.log('from loadMovies action', movies);
+        if (users.length) {
             dispatch(loadUsersSuccess(users));
-            dispatch(loading(false));
-            // console.log('ACTION: LOAD SUCCESS ');
-        }).catch(err => {
-            throw (err);
-        })
+            dispatch(searchLoader(false));
+        }
+        // dispatch(loading(true));
+        // // console.log('ACTION: LOAD BEFORE SUCCESS ');
+        // return API.getUsers(since).then(users => {
+
+        //     dispatch(loading(false));
+        //     // console.log('ACTION: LOAD SUCCESS ');
+        // }).catch(err => {
+        //     throw (err);
+        // })
     }
 }
 

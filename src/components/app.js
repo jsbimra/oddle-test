@@ -1,27 +1,17 @@
 import React, { Component } from 'react';
-import UserList from '../containers/users-list';
-// import UserDetail from '../containers/user-detail';
-import Search from '../containers/search';
-import '../scss/style.scss';
+import { BrowserRouter as Router, Route } from 'react-router-dom';
 
+import '../scss/style.scss';
+import Dashboard from '../components/dashboard';
 class App extends Component {
     render() {
         return (
-            <div className="main-wrapper">
-                <h1>Assignment + React Redux + SSR + NOW + FUN!!</h1>
-                <Search />
-
-                <div className="list-container">
-                    <UserList />
+            <Router>
+                <div>
+                    <Route exact path="/" component={Dashboard} />
+                    {/* <Route component={Dashboard} /> */}
                 </div>
-{/* 
-                <div className="modal-wrapper">
-                    <DetailModal />
-                </div> */}
-
-                
-
-            </div>
+            </Router>
         )
     }
 }

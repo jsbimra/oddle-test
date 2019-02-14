@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 
-class DetailModal extends Component {
+class UserDetail extends Component {
   constructor(props) {
     super(props);
 
@@ -52,4 +52,4 @@ function mapStateToProps(state) {
   }
 }
 
-export default connect(mapStateToProps)(DetailModal);
+export default connect(mapStateToProps)(UserDetail);

@@ -29,7 +29,7 @@ export function loadUsers(users) {
 }
 
 export const selectUser = (user) => {
-    console.log(`Your selected following : ${user}`);
+    console.log(`Your selected following : ${user}`, user);
 
     return (dispatch) => {
 

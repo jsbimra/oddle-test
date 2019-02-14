@@ -1,9 +1,11 @@
 import React, { Component } from 'react';
+import { BrowserRouter as Router, Route, Link } from 'react-router-dom';
 
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 
 import Loading from './loading';
+import UserDetail from '../containers/user-detail';
 import { selectUser, loadUsers } from '../actions/user-action';
 
 class UsersList extends Component {
@@ -41,13 +43,13 @@ class UsersList extends Component {
       return this.props.users.map((item, idx) => {
         return (
           <li key={idx}>
-            <a href="#" onClick={(e) => {
+            <Link to="/:item" onClick={(e) => {
               e.preventDefault();
               this.selectUser(item);
             }}>
               <p>{`${item.login.toUpperCase()}`}</p>
               <img src={item.avatar_url} alt="user-thumb" height="100px" />
-            </a>
+            </Link>
           </li>
         )
       })
@@ -64,10 +66,11 @@ class UsersList extends Component {
           <ul>
             {this.createList()}
           </ul>
+          <Route path="/:user" component={UserDetail} />
         </div>
       );
     } else {
-     // ListContainerData = (<Loading message="Type to search users" />);
+      // ListContainerData = (<Loading message="Type to search users" />);
     }
 
     return (

@@ -3,7 +3,6 @@ import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 
 import { loading } from '../actions/loading-action';
-
 export class Loading extends Component {
     render() {
         return (

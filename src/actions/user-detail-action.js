@@ -8,7 +8,6 @@ function selectedDetailUser(username) {
     } 
 }
 export function updateUserDetail(user) {
-    console.log('USER DETAIL UPDATE ACTION: ', user)
     return {
         type: types.USER_DETAIL_VIEW,
         activeUser: user
@@ -17,8 +16,6 @@ export function updateUserDetail(user) {
 
 export function fetchUserDetail(username) {
     return (dispatch) => {
-
-        //update selected user state
         dispatch(selectedDetailUser(username));
 
         return API.searchByUsers(username).then(users => {
@@ -34,7 +31,6 @@ export function fetchUserDetail(username) {
 }
 
 export function fetchBlockData(url) {
-    
     return fetch(url).then(resp => resp.json())
     .then(data => data)
     .catch(err => console.error(new Error(err)));

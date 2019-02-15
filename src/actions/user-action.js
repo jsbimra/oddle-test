@@ -1,11 +1,10 @@
 import * as types from './actionTypes';
-import API from '../api/api';
 
 import { searchLoader } from './loading-action';
 import { updateUserDetail } from './user-detail-action';
 
 export function loadUsersSuccess(users) {
-    return {
+        return {
         type: types.LOAD_USERS_SUCCESS,
         users
     }
@@ -13,7 +12,7 @@ export function loadUsersSuccess(users) {
 
 export function loadUsers(users) {
     return function (dispatch) {
-        if (users.length) {
+        if (users) {
             dispatch(loadUsersSuccess(users));
             dispatch(searchLoader(false));
         }
@@ -21,8 +20,6 @@ export function loadUsers(users) {
 }
 
 export const selectUser = (user) => {
-    console.log(`Your selected following : ${user}`, user);
-
     return (dispatch) => {
         dispatch(updateUserDetail(user));
     }

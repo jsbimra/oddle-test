@@ -18,12 +18,18 @@ class Search extends Component {
         this.handleInputKeyUp = this.handleInputKeyUp.bind(this);
     }
 
-    componentWillReceiveProps(nxtProps) {
-        let { searchKeyword } = this.props;
+    // componentWillReceiveProps(nxtProps) {
+    //     let { searchKeyword } = this.props;
 
-        if (nxtProps.searchKeyword !== searchKeyword) {
-            this.setState({ keyword: this.props.searchKeyword });
-        }
+    //     if (nxtProps.searchKeyword !== searchKeyword) {
+    //         this.setState({ keyword: this.props.searchKeyword });
+    //     }
+    // }
+    
+    componentDidMount() {
+        let { searchKeyword } = this.props;
+        this.setState({ keyword: searchKeyword });
+
     }
 
     handleInputChange(e) {
@@ -81,7 +87,7 @@ class Search extends Component {
 
 function mapStateToProps(state) {
     return {
-        searchKeyword: state.searchKeyword ? state.searchKeyword : '',
+        searchKeyword: state.searchKeyword,
         searchLoaderStatus: state.searchLoaderStatus
     }
 }

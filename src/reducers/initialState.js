@@ -1,8 +1,9 @@
 export default {
     loadingStatus: false,
     searchLoaderStatus: false,
-    users: [],
+    users: {},
     activeUser: {},
     selectedDetailUsername: null,
-    searchKeyword: ''
+    searchKeyword: '',
+    pagination: {}
 }

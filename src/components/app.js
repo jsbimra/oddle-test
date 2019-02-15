@@ -9,13 +9,11 @@ import '../scss/style.scss';
 import UserList from '../containers/users-list';
 import UserDetail from '../containers/user-detail';
 class App extends Component {
-    componentDidMount() {
-        console.log(this.props);
-    }
+    
     render() {
         return (
             <Router>
-                <div>
+                <div className="main-wrapper">
                     {/* <Route path="/" component={Dashboard} /> */}
                     <h1>Assignment + React Redux + SSR + NOW + FUN!!</h1>
                     <hr />

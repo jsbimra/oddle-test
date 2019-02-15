@@ -1,12 +1,13 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
-import { withRouter } from 'react-router'; //for redux
+import { withRouter } from 'react-router'; 
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 
-import { selectUser, loadUsers } from '../actions/user-action';
+import { selectUser } from '../actions/user-action';
 import Search from '../containers/search';
-// import UserDetail from '../containers/user-detail';
+import Pagination from '../containers/pagination';
+import { config } from '../api/config';
 
 class UsersList extends Component {
   constructor(props) {
@@ -14,35 +15,19 @@ class UsersList extends Component {
     this.state = {
       isLoading: false,
     }
-
     this.selectUser = this.selectUser.bind(this);
-    this.reloadAction = this.reloadAction.bind(this);
   }
-  componentWillReceiveProps(nextProps) {
-    // console.log('COMPONENT: componentWillReceiveProps ', nextProps);
-    // if(this.props.loading !== nextProps.loading) {
-    //   this.props.loading = nextProps;
-    // }
-  }
-  componentDidUpdate(nextProps) {
-    // console.log('COMPONENT: componentDidUpdate ', nextProps);
-
-  }
-  componentDidMount() {
-    // console.log('PROPS: loading', this.props.loadingStatus)
-  }
-  reloadAction() {
-
-  }
+  
   selectUser(user, navigateToPath) {
     this.props.selectUser(user);
-
     this.props.history.push(navigateToPath);
   }
 
   createList() {
-    if (this.props.users.length) {
-      return this.props.users.map((item, idx) => {
+    const {items} = this.props.users;
+
+    if (items.length) {
+      return items.map((item, idx) => {
         return (
           <li key={idx}>
             <Link to={`/${item.login}`} onClick={(e) => {
@@ -52,29 +37,26 @@ class UsersList extends Component {
               <img src={item.avatar_url} alt="user-thumb" height="100px" />
               <p>{`${item.login.toUpperCase()}`}</p>
             </Link>
-            {/* <Link to={`/${item.login}`} onClick={(e) => {
-              e.preventDefault();
-              this.selectUser(item);
-            }}>
-              <img src={item.avatar_url} alt="user-thumb" height="100px" />
-              <p>{`${item.login.toUpperCase()}`}</p>
-            </Link> */}
           </li>
         )
       })
     } else {
-      return ''
+      return (<p className="text-center">Oops, no user found with <em style={{color: 'orangered'}}>"{this.props.searchKeyword}"</em></p>)
     }
   }
   render() {
     let ListContainerData;
-    if (this.props.users.length) {
+    const { users } = this.props;
+
+    if (users && users.items) {
       ListContainerData = (
         <div>
           <h2>Users List</h2>
           <ul>
             {this.createList()}
           </ul>
+          {/* {to tackle weired scenario for, of tatal_count and no items length found} */}
+          {(users.total_count > config.PER_PAGE_COUNT && users.items.length) ? (<Pagination records={users}/>) : ''}
         </div>
       );
     } else {
@@ -82,7 +64,6 @@ class UsersList extends Component {
     }
 
     return (
-
       <div className="clearfix">
         <Search />
         <div className="list-container">
@@ -94,8 +75,8 @@ class UsersList extends Component {
 }
 
 function mapStateToProps(state) {
-  // console.log('state ', state);
   return {
+    searchKeyword: state.searchKeyword,
     users: state.users,
     loadingStatus: state.loadingStatus,
   }
@@ -103,8 +84,7 @@ function mapStateToProps(state) {
 
 function matchDispatchToProps(dispatch) {
   return bindActionCreators({
-    selectUser,
-    loadUsers,
+    selectUser
   }, dispatch);
 }
 

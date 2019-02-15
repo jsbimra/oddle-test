@@ -1,32 +1,42 @@
-import express from 'express';
-
-import serverRender from './middleware/renderer';
-
-const PORT = 3000;
+const md5File = require('md5-file');
 const path = require('path');
 
-//initalize the application and creates the routes
-const app = express();
-const router = express.Router();
+// CSS styles will be imported on load and that complicates matters... ignore those bad boys!
+const ignoreStyles = require('ignore-styles');
+const register = ignoreStyles.default;
 
-//root (/) should always serve our render page
-router.use('*', serverRender);
+// We also want to ignore all image requests
+// When running locally these will load from a standard import
+// When running on the server, we want to load via their hashed version in the build folder
+const extensions = ['.gif', '.jpeg', '.jpg', '.png', '.svg'];
 
-//other static resources should just be served as they are
-rotuer.use(express.static(
-    path.resolve(__dirname,'..', 'build'),
-    { maxAge: '30d' },
-))
+// Override the default style ignorer, also modifying all image requests
+register(ignoreStyles.DEFAULT_EXTENSIONS, (mod, filename) => {
+  if (!extensions.find(f => filename.endsWith(f))) {
+    // If we find a style
+    return ignoreStyles.noOp();
+  } else {
+    // If we find an image
+    const hash = md5File.sync(filename).slice(0, 8);
+    const bn = path.basename(filename).replace(/(\.\w{3})$/, `.${hash}$1`);
 
-//tell the app to use above rule
-app.use(router);
-
-//start the app 
-app.listen(PORT, (error) => {
-    if(error) {
-        return console.log('Something wierd happened ', error);
-    }
-
-    console.log(`Listening on PORT ${PORT} ...`);
-
+    mod.exports = `/static/media/${bn}`;
+  }
 });
+
+// Set up babel to do its thing... env for the latest toys, react-app for CRA
+// Notice three plugins: the first two allow us to use import rather than require, the third is for code splitting
+// Polyfill is required for Babel 7, polyfill includes a custom regenerator runtime and core-js
+require('@babel/polyfill');
+require('@babel/register')({
+  ignore: [/\/(build|node_modules)\//],
+  presets: ['@babel/preset-env', '@babel/preset-react'],
+  plugins: [
+    '@babel/plugin-syntax-dynamic-import',
+    'dynamic-import-node',
+    'react-loadable/babel'
+  ]
+});
+
+// Now that the nonsense is over... load up the server entry point
+require('./server');

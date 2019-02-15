@@ -12,26 +12,13 @@ import Block from '../containers/user-detail-block';
 class UserDetail extends Component {
 
   componentWillMount(prevProps) {
-    const { match, activeUser } = this.props;
-    const username = match.params.user ? match.params.user : null;
+    const { activeUser } = this.props;
 
     if (!Object.keys(activeUser).length) {
       this.props.history.push('/');
     }
 
   }
-
-  componentWillUnmount() {
-
-  }
-
-  // getUserDetail(username) {
-  //   console.log('username is: ', username.trim());
-  //   const userdetail = this.props.fetchUserDetail(username.trim());
-
-  //   console.log(userdetail);
-  //   // return userdetail;
-  // }
 
   formatURL(url) {
     if (url) {

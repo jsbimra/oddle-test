@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { bindActionCreators } from 'redux';
 import { fetchBlockData } from '../actions/user-detail-action';
 
 // import 
@@ -11,15 +10,14 @@ class UserDetailBlock extends Component {
     componentDidMount() {
 
         if (this.props.apiURL) {
-            console.log('URL is: ', this.props.apiURL);
-            const blockData = fetchBlockData(this.props.apiURL)
+            fetchBlockData(this.props.apiURL)
                 .then(data => {
-                    console.log(data);
+                    // console.log(data);
                     this.setState({ blockData: data });
                     // this.buildBlockData(data);
                     return data;
                 })
-                .catch(err => console.error(new Error));
+                .catch(err => new Error(console.error(err)));
         }
     }
 
@@ -30,7 +28,9 @@ class UserDetailBlock extends Component {
 
         const items = blockData.map(item => {
             return (
-                <li key={item.id}><a href={item.html_url} target="_blank">{item.login ? item.login : item.name}</a></li>
+                <li key={item.id}>
+                    <a href={item.html_url} rel="noopener noreferrer" target="_blank">{item.login ? item.login : item.name} <small>(external)</small></a>
+                </li>
             )
         });
         return (<ul className="block-list">{items}</ul>);
@@ -38,13 +38,22 @@ class UserDetailBlock extends Component {
 
 
     render() {
-        const { cssClasses, title, apiURL } = this.props;
-        return (
-            <div className={cssClasses}>
-                <h3>{title} <span className="badge badge-small">{this.state.blockData.length !== 0 ? this.state.blockData.length : ''}</span></h3>
-                {this.buildBlockData()}
-            </div>
-        )
+
+        const { blockData } = this.state;
+        const { cssClasses, title } = this.props;
+        if (blockData.length) {
+            return (
+                <div className={cssClasses}>
+                    <h3>{title} {this.state.blockData.length !== 0 ? (<span className="badge badge-small">{`${this.state.blockData.length}`}</span>) : ''}</h3>
+                    {this.buildBlockData()}
+                </div>
+            )
+        } else {
+            return (
+                <div className={cssClasses}>
+                    <h3>{title} <span className="badge badge-small">{this.state.blockData.length !== 0 ? this.state.blockData.length : ''}</span></h3>
+                    Checking for data...</div>)
+        }
     }
 }
 

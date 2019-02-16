@@ -2,12 +2,18 @@
 .list-container{
     overflow: hidden;
     width: 100%;
+
+    & h2 {
+        color: rgb(0, 47, 255);
+        text-align: center;
+    }  
 }
 
 .list-container ul{
     list-style-type: none;
     margin: 0;
     padding: 0;
+
     & > li {
         width: 15%;
         margin-bottom: 45px;

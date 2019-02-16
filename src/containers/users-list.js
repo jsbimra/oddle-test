@@ -61,7 +61,7 @@ class UsersList extends Component {
     if (users && users.items) {
       ListContainerData = (
         <div>
-          <h2>Users List</h2>
+          <h2>Users</h2>
           <ul>
             {this.createList()}
           </ul>

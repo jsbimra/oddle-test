@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
-import { withRouter } from 'react-router'; 
+import { withRouter } from 'react-router';
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 
@@ -17,16 +17,26 @@ class UsersList extends Component {
     }
     this.selectUser = this.selectUser.bind(this);
   }
-  
+  componentDidUpdate(prevProps) {
+    // console.log('compontent did update ', this.props.users);
+    if (prevProps.users !== this.props.users) {
+    // console.log('inside IF compontent did update ', this.props.users);
+      this.createList();
+    }
+  }
   selectUser(user, navigateToPath) {
     this.props.selectUser(user);
     this.props.history.push(navigateToPath);
   }
 
   createList() {
-    const {items} = this.props.users;
+    const { items, status, message } = this.props.users;
+    // console.log('create List user action: ', items);
 
-    if (items.length) {
+    if (status === 403)
+      return (<p className="text-center">Oops, <em style={{ color: 'orangered' }}>{message}</em></p>)
+
+    if (items && items.length) {
       return items.map((item, idx) => {
         return (
           <li key={idx}>
@@ -41,7 +51,7 @@ class UsersList extends Component {
         )
       })
     } else {
-      return (<p className="text-center">Oops, no user found with <em style={{color: 'orangered'}}>"{this.props.searchKeyword}"</em></p>)
+      return (<p className="text-center">Oops, no user found with <em style={{ color: 'orangered' }}>"{this.props.searchKeyword}"</em></p>)
     }
   }
   render() {
@@ -56,7 +66,7 @@ class UsersList extends Component {
             {this.createList()}
           </ul>
           {/* {to tackle weired scenario for, of tatal_count and no items length found} */}
-          {(users.total_count > config.PER_PAGE_COUNT && users.items.length) ? (<Pagination records={users}/>) : ''}
+          {(users.total_count > config.PER_PAGE_COUNT && users.items.length) ? (<Pagination records={users} />) : ''}
         </div>
       );
     } else {

@@ -1,9 +1,11 @@
+import { config } from "../api/config";
+
 export default {
     loadingStatus: false,
     searchLoaderStatus: false,
     users: {},
     activeUser: {},
     selectedDetailUsername: null,
-    searchKeyword: '',
+    searchKeyword: config.DEFAULT_SEARCH_KEYWORD,
     pagination: {}
 }

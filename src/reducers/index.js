@@ -3,6 +3,7 @@ import { PageLoadingReducer, SearchLoaderReducer } from './loading-reducer';
 import { ActiveUserReducer, SelectedUsernameReducer } from './user-detail-reducer';
 import UsersReducers from './users-reducer';
 import SearchReducer from './search-reducer';
+import { PaginationReducer } from './pagination-reducer';
 
 const allReducers = combineReducers({
     activeUser: ActiveUserReducer,
@@ -10,7 +11,8 @@ const allReducers = combineReducers({
     users: UsersReducers,
     loadingStatus: PageLoadingReducer,
     searchLoaderStatus: SearchLoaderReducer,
-    searchKeyword: SearchReducer
+    searchKeyword: SearchReducer,
+    pagination: PaginationReducer
 });
 
 export default allReducers;

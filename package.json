@@ -59,6 +59,7 @@
   ],
   "devDependencies": {
     "gh-pages": "^2.0.1",
+    "parse-link-header": "^1.0.1",
     "react-frontload": "^1.0.3"
   }
 }

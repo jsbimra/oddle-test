@@ -39,13 +39,11 @@ class Search extends Component {
 
     handleInputKeyUp(e) {
         const { keyword } = this.state;
-        console.log('value of input ', keyword);
-
         clearTimeout(this.timeout);
 
         if (keyword !== '') {
             this.timeout = setTimeout(() => {
-                console.log('TIMEOUT: make a call for api');
+                // console.log('TIMEOUT: make a call for api');
                 //calling redux method to fetch resultss
                 this.props.onSearch(keyword);
             }, 500);

@@ -10,7 +10,7 @@ import { onUserSearch } from './actions/search-action';
 const { store, history } = createStore();
 
 //let's tell the store to dispatch our loadMovies action
-store.dispatch(onUserSearch('god'));
+store.dispatch(onUserSearch(store.getState().searchKeyword));
 
 
 const renderMethod = module.hot ? ReactDOM.render : ReactDOM.hydrate;

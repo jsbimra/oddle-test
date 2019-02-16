@@ -37,9 +37,7 @@ class UserDetail extends Component {
     if (Object.keys(user).length) {
       detailTemplate = (
         <div className="list-detail-container">
-          <h2>USER - {user.login.toUpperCase()}</h2>
-          <p className="text-left clearfix back-link"><Link to="/" className="float-right1">&#8592; back to list</Link></p>
-
+          <h2 className="title"><Link to="/" className=" back-link">&#8592;</Link> USER - {user.login.toUpperCase()}</h2>
           <div className="block-container">
             <div className="block avatar"><img src={user.avatar_url} alt="user-thumb" height="150px" className="round-img float-left" /></div>
             <Block cssClasses="block followers" apiURL={this.formatURL(user.followers_url)} title="Followers" />

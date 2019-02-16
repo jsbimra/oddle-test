@@ -6,16 +6,15 @@
     position: relative;
 
     & .search-input {
-        float:left;
-        width: 92.6%;
+        width: 100%;
         border-right: none;
     }
 
-    input[type='button'] {
+    & input[type='button'] {
         margin-top: 0;
         height: 44px;
-        position:relative;
-        left:-5px;
+        position: absolute;;
+        right:0px;
         z-index: 1;
     }
 

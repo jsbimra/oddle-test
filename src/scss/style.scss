@@ -1043,6 +1043,17 @@ button[disabled]:hover, input[disabled]:hover {
     }
 }
 
+.fade-enter {
+    opacity: 0;
+    z-index: 1;
+}
+
+.fade-enter.fade-enter-active {
+    opacity: 1;
+    transition: opacity 550ms ease-in;
+}
+
 @import 'search';
 @import 'list';
 @import 'list_detail';
+@import 'mediaqueries';

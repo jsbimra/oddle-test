@@ -1,0 +1,37 @@
+
+@media (max-width: 960px) {
+    .main-wrapper{
+        width:auto;
+        margin:0 5px;
+    }
+}
+
+@media (max-width: 840px) {
+    
+    .list-detail-container .block.avatar{
+        float:none;
+        clear:left;
+        text-align: center;
+        width: inherit;
+        border-bottom: 1px solid lightgrey;
+        padding-bottom: 15px;
+        margin-bottom: 10px;
+
+        & img {
+            float:none;
+        }
+    }
+    .list-container ul > li, 
+    .list-detail-container .block:not(.avatar) {
+        width: 33.3%;
+        margin: 0;
+    }
+}
+
+@media (max-width: 650px) {
+    .list-container ul > li {
+        width: 50%;
+        margin: 0;
+    }
+}
+

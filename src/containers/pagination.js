@@ -17,6 +17,8 @@ class Pagination extends Component {
 
         if (Object.keys(navInfo).length)
             this.props.loadMore(navInfo);
+    
+        window.document.documentElement.scrollTop =0 
     }
 
     componentDidMount() {

@@ -1,7 +1,18 @@
 
 .list-detail-container {
+
+    .title{
+        position: relative;
+    }
     .back-link {
-        margin-left: 20px;
+        position: absolute;
+        top: 5px;
+        left: 6px;
+        font-size: 18px;
+        font-weight: bold;
+        margin-left: 0;
+        line-height: 18px;
+        transform: scale(1.5);
     }
 
     h2 {
